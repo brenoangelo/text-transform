@@ -4,7 +4,6 @@ export const Container = styled.header`
   height: 15.625rem;
   width: 100%;
   background-color: ${(props) => props.theme['gray-700']};
-  position: relative;
 
   > div:last-of-type {
     position: absolute;

@@ -3,12 +3,13 @@ import { Container, Slider } from './styles';
 interface ISwitchProps {
   size: number;
   activeColor?: `#${string}`;
+  name: string;
 }
 
-export function Switch({ size, activeColor }: ISwitchProps) {
+export function Switch({ size, activeColor, name }: ISwitchProps) {
   return (
-    <Container htmlFor="switch" size={size} activeColor={activeColor}>
-      <input id="switch" type="checkbox" />
+    <Container htmlFor={`switch-${name}`} size={size} activeColor={activeColor}>
+      <input id={`switch-${name}`} type="checkbox" />
       <Slider size={size} />
     </Container>
   );
