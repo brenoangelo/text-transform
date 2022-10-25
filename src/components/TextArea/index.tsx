@@ -1,5 +1,6 @@
 import { Check, CopySimple } from 'phosphor-react';
-import { TextareaHTMLAttributes, useState } from 'react';
+import { TextareaHTMLAttributes, useEffect, useState } from 'react';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { Switch } from '../Switch';
 import { Container, CopyButton, Option, OptionsContainer } from './styles';
 
@@ -22,7 +23,15 @@ export function TextArea({
   isCopyable,
   ...props
 }: ITextArea) {
+  const [storage, setStorage] = useLocalStorage<string[]>('@transform:options');
   const [isCopied, setIsCopied] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    storage && setTextOptions?.(storage);
+
+    setLoading(false);
+  }, []);
 
   function onChangeTextOptions(option: string, active: boolean) {
     const textOptionsCopy = Array.from(textOptions ?? []);
@@ -34,6 +43,7 @@ export function TextArea({
           1,
         );
 
+    setStorage(textOptionsCopy);
     setTextOptions?.(textOptionsCopy);
   }
 
@@ -43,6 +53,8 @@ export function TextArea({
       [];
 
     let textOptionsCopy = active ? allOptions : [];
+
+    setStorage(textOptionsCopy);
     setTextOptions?.(textOptionsCopy);
   }
 
@@ -58,7 +70,7 @@ export function TextArea({
     }, 6000);
   }
 
-  return (
+  return !loading ? (
     <Container>
       {menuOptions && (
         <OptionsContainer>
@@ -85,13 +97,17 @@ export function TextArea({
       )}
       {isCopyable &&
         (isCopied ? (
-          <CopyButton><Check size={22} color="#4EA8DE"/></CopyButton>
+          <CopyButton>
+            <Check size={22} color="#4EA8DE" />
+          </CopyButton>
         ) : (
           <CopyButton onClick={handleCopyToClipboard}>
-            <CopySimple size={22} color="#808080"/>
+            <CopySimple size={22} color="#808080" />
           </CopyButton>
         ))}
       <textarea {...props} />
     </Container>
+  ) : (
+    <></>
   );
 }
