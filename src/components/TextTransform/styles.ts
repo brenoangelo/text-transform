@@ -7,7 +7,9 @@ export const Container = styled.div`
 `;
 
 export const TransformButton = styled.button`
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
   margin: 4rem auto;
 
   background: ${(props) => props.theme['blue-300']};

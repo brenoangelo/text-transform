@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: relative;
   > textarea {
     width: 100%;
     height: 9.37rem;
@@ -11,7 +12,7 @@ export const Container = styled.div`
     border-radius: 8px;
 
     color: ${(props) => props.theme['gray-100']};
-    padding: 1rem;
+    padding: 1rem 3rem 1rem 1rem;
   }
 `;
 
@@ -34,5 +35,21 @@ export const Option = styled.label`
 
   &:last-of-type {
     margin-left: auto;
+  }
+`;
+
+export const CopyButton = styled.button`
+  background-color: transparent;
+  padding: 0;
+  border: 0;
+
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.5;
   }
 `;
