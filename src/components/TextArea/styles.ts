@@ -13,6 +13,30 @@ export const Container = styled.div`
 
     color: ${(props) => props.theme['gray-100']};
     padding: 1rem 3rem 1rem 1rem;
+
+    scrollbar-width: thin;
+    scrollbar-color: ${(props) => props.theme['gray-500']} transparent;
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      background-color: transparent;
+    }
+
+    /* scrollbar indicator color */
+    &::-webkit-scrollbar-thumb:vertical,
+    &::-webkit-scrollbar-thumb:horizontal {
+      background-color: ${(props) => props.theme['gray-300']};
+      border-radius: 5px;
+    }
+
+    /* scrollbar indicator color on hover */
+    &::-webkit-scrollbar-thumb:vertical:hover{
+      background-color: ${(props) => props.theme['blue-300']};
+    }
   }
 `;
 
