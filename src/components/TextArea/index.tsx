@@ -35,6 +35,14 @@ export function TextArea({
     setLoading(false);
   }, []);
 
+  useEffect(() => {
+    document.onkeydown = (event) => {
+      if (event.ctrlKey && event.keyCode == 67) {
+        handleCopyToClipboard();
+      }
+    };
+  }, [props?.value]);
+
   function onChangeTextOptions(option: string, active: boolean) {
     const textOptionsCopy = Array.from(textOptions ?? []);
 
@@ -107,7 +115,7 @@ export function TextArea({
             onClick={handleCopyToClipboard}
             title={
               hasText
-                ? 'Copiar para area de transferência'
+                ? 'Copiar para area de transferência (Ctrl + C)'
                 : 'Não existe texto para ser copiado para a area de transferência'
             }
             disabled={!hasText}

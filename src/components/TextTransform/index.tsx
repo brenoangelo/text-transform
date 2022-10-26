@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import capitalize from 'capitalize-pt-br';
 import { ArrowsClockwise } from 'phosphor-react';
@@ -18,6 +18,14 @@ export function TextTransform() {
   const [outputText, setOutputText] = useState('');
   const [textOptions, setTextOptions] = useState<string[]>([]);
 
+  useEffect(() => {
+    document.onkeydown = (event) => {
+      if (event.shiftKey && event.ctrlKey) {
+        handleTransformText();
+      }
+    };
+  }, [inputText]);
+
   function handleChangeInputTextArea(event: ChangeEvent<HTMLTextAreaElement>) {
     setInputText(event.target.value);
   }
@@ -32,7 +40,7 @@ export function TextTransform() {
     if (textOptions.includes('accent')) {
       inputTextCopy = inputTextCopy
         .normalize('NFD')
-        .replace(/[\u002f]/g, " ")
+        .replace(/[\u002f]/g, ' ')
         .replace(/[\u0300-\u036f]/g, '')
         .replace(/[^a-zA-Z-0-9\s]/g, '');
     }
@@ -57,7 +65,7 @@ export function TextTransform() {
         setTextOptions={setTextOptions}
         textOptions={textOptions}
       />
-      <TransformButton onClick={handleTransformText}>
+      <TransformButton onClick={handleTransformText} title="Ctrl + shift">
         Transformar <ArrowsClockwise size={16} weight="bold" />
       </TransformButton>
       <TextArea
