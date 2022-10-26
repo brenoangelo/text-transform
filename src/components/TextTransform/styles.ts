@@ -4,6 +4,7 @@ export const Container = styled.div`
   max-width: 47rem;
   margin: 0 auto;
   width: 100%;
+  padding: 0 0.5rem;
 `;
 
 export const TransformButton = styled.button`

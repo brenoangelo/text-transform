@@ -28,18 +28,21 @@ export function TextTransform() {
 
   function handleTransformText() {
     let inputTextCopy = inputText;
+
+    if (textOptions.includes('accent')) {
+      inputTextCopy = inputTextCopy
+        .normalize('NFD')
+        .replace(/[\u002f]/g, " ")
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-zA-Z-0-9\s]/g, '');
+    }
+
     if (textOptions.includes('capitalized')) {
       inputTextCopy = capitalize(inputTextCopy);
     }
 
     if (textOptions.includes('underline')) {
-      inputTextCopy = inputTextCopy.split(' ').join('_');
-    }
-
-    if (textOptions.includes('accent')) {
-      inputTextCopy = inputTextCopy
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '');
+      inputTextCopy = inputTextCopy.split(/[\u0020]/g).join('_');
     }
 
     setOutputText(inputTextCopy);
