@@ -27,6 +27,8 @@ export function TextArea({
   const [isCopied, setIsCopied] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const hasText = !!(props?.value as string)?.trim();
+
   useEffect(() => {
     storage && setTextOptions?.(storage);
 
@@ -97,11 +99,19 @@ export function TextArea({
       )}
       {isCopyable &&
         (isCopied ? (
-          <CopyButton>
+          <CopyButton title="Copiado com sucesso!">
             <Check size={22} color="#4EA8DE" />
           </CopyButton>
         ) : (
-          <CopyButton onClick={handleCopyToClipboard}>
+          <CopyButton
+            onClick={handleCopyToClipboard}
+            title={
+              hasText
+                ? 'Copiar para area de transferência'
+                : 'Não existe texto para ser copiado para a area de transferência'
+            }
+            disabled={!hasText}
+          >
             <CopySimple size={22} color="#808080" />
           </CopyButton>
         ))}
