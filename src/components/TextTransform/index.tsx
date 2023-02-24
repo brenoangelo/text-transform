@@ -7,7 +7,7 @@ import { TextArea } from '../TextArea';
 import { Container, TransformButton } from './styles';
 
 const MENU_OPTIONS = [
-  { label: 'colocar underlines', value: 'underline' },
+  { label: 'colocar hífens', value: 'hifen' },
   { label: 'remover acentuação', value: 'accent' },
   { label: 'capitalizar', value: 'capitalized' },
   { label: 'ativar tudo', value: 'all' },
@@ -49,8 +49,8 @@ export function TextTransform() {
       inputTextCopy = capitalize(inputTextCopy);
     }
 
-    if (textOptions.includes('underline')) {
-      inputTextCopy = inputTextCopy.split(/[\u0020]/g).join('_');
+    if (textOptions.includes('hifen')) {
+      inputTextCopy = inputTextCopy.split(/[\u0020]/g).join('-');
     }
 
     setOutputText(inputTextCopy);
