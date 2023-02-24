@@ -3,8 +3,8 @@ import { Container, Title } from './styles';
 
 const TOOLTIP_MESSAGE_ROWS = [
   {
-    title: 'colocar underlines',
-    message: 'substitui espaços em branco por underlines',
+    title: 'colocar hífens',
+    message: 'substitui espaços em branco por hífens',
   },
   {
     title: 'remover acentuação',
