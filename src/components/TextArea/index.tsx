@@ -29,17 +29,9 @@ export function TextArea({
   isCopyable,
   ...props
 }: ITextArea) {
-  const [storage, setStorage] = useLocalStorage<string[]>('@transform:options');
   const [isCopied, setIsCopied] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   const hasText = !!(props?.value as string)?.trim();
-
-  useEffect(() => {
-    storage && setTextOptions?.(storage);
-
-    setLoading(false);
-  }, []);
 
   useEffect(() => {
     document.onkeydown = (event) => {
@@ -48,31 +40,6 @@ export function TextArea({
       }
     };
   }, [props?.value]);
-
-  function onChangeTextOptions(option: string, active: boolean) {
-    const textOptionsCopy = Array.from(textOptions ?? []);
-
-    active
-      ? textOptionsCopy.push(option)
-      : textOptionsCopy.splice(
-          textOptionsCopy.findIndex((item) => item === option),
-          1,
-        );
-
-    setStorage(textOptionsCopy);
-    setTextOptions?.(textOptionsCopy);
-  }
-
-  function onChangeAllTextOptions(option: string, active: boolean) {
-    const allOptions =
-      menuOptions?.map((item) => item.value).filter((item) => item !== 'all') ??
-      [];
-
-    let textOptionsCopy = active ? allOptions : [];
-
-    setStorage(textOptionsCopy);
-    setTextOptions?.(textOptionsCopy);
-  }
 
   function handleCopyToClipboard() {
     navigator.clipboard.writeText(props?.value as string).then(() => {
@@ -86,31 +53,8 @@ export function TextArea({
     }, 6000);
   }
 
-  return !loading ? (
+  return (
     <Container>
-      {menuOptions && (
-        <OptionsContainer>
-          {menuOptions.map((option) => (
-            <Option key={option.value}>
-              {option.label}
-              <Switch
-                name={option.value}
-                size={0.5}
-                activeColor={option.value === 'all' ? '#8284FA' : undefined}
-                handleChange={
-                  option.value === 'all'
-                    ? onChangeAllTextOptions
-                    : onChangeTextOptions
-                }
-                isChecked={
-                  !!textOptions?.includes(option.value) ||
-                  textOptions?.length === menuOptions.length - 1
-                }
-              />
-            </Option>
-          ))}
-        </OptionsContainer>
-      )}
       {isCopyable &&
         (isCopied ? (
           <CopyButton title="Copiado com sucesso!">
@@ -133,7 +77,5 @@ export function TextArea({
       <TextCount>{!!props?.value && (props.value as string)?.length}</TextCount>
       <textarea {...props} />
     </Container>
-  ) : (
-    <></>
   );
 }

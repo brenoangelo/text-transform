@@ -44,6 +44,7 @@ export const OptionsContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
 
   margin-bottom: 2.5rem;
   margin-top: -2.5rem;
@@ -55,11 +56,7 @@ export const Option = styled.label`
   cursor: pointer;
 
   display: flex;
-  gap: 0.31rem;
-
-  &:last-of-type {
-    margin-left: auto;
-  }
+  gap: 0.5rem;
 `;
 
 export const CopyButton = styled.button`

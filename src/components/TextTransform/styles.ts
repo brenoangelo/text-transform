@@ -5,6 +5,7 @@ export const Container = styled.div`
   margin: 0 auto;
   width: 100%;
   padding: 0 0.5rem;
+  margin-top: 1rem;
 `;
 
 export const TransformButton = styled.button`

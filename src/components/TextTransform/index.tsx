@@ -5,18 +5,21 @@ import { ArrowsClockwise } from 'phosphor-react';
 import { TextArea } from '../TextArea';
 
 import { Container, TransformButton } from './styles';
+import { useTextContext } from '../../contexts/TextContext';
 
 const MENU_OPTIONS = [
+  { label: 'ativar tudo', value: 'all' },
   { label: 'colocar hífens', value: 'hifen' },
   { label: 'remover acentuação', value: 'accent' },
   { label: 'capitalizar', value: 'capitalized' },
-  { label: 'ativar tudo', value: 'all' },
+  { label: 'adicionar aspas duplas', value: 'double-quotes' },
+  { label: 'adicionar aspas duplas em cada texto', value: 'double-quotes-texts' },
 ];
 
 export function TextTransform() {
+  const { textOptions } = useTextContext()
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
-  const [textOptions, setTextOptions] = useState<string[]>([]);
 
   useEffect(() => {
     document.onkeydown = (event) => {
@@ -62,7 +65,6 @@ export function TextTransform() {
         menuOptions={MENU_OPTIONS}
         placeholder="Entrada"
         onChange={handleChangeInputTextArea}
-        setTextOptions={setTextOptions}
         textOptions={textOptions}
       />
       <TransformButton onClick={handleTransformText} title="Ctrl + shift">

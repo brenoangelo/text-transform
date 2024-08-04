@@ -14,6 +14,7 @@ export const Container = styled.div`
 export const MessageBalloon = styled.div`
   z-index: 999;
   position: absolute;
+  display: inline-block;
   right: 0;
   top: 120%;
 
