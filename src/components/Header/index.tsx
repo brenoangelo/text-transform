@@ -18,9 +18,9 @@ export function Header() {
     <Container>
       <Title>
         <h1>
-          Transformador <span>de textos</span>
+          Text <span>Transform</span>
         </h1>
-        <p>Escreva seu texto e deixe pronto para subir em sites</p>
+        <p>Transforme seu texto da maneira que desejar</p>
       </Title>
 
       <Tooltip
