@@ -40,6 +40,15 @@ export function TextTransform() {
   function handleTransformText() {
     let inputTextCopy = inputText;
 
+    if(textOptions.includes('double-quotes')) {
+      inputTextCopy = `"${inputTextCopy}"`
+    }
+
+    if(textOptions.includes('comma')) {
+      inputTextCopy = inputTextCopy.split(/[\u0020]/g).join(',')
+    }
+
+
     if (textOptions.includes('accent')) {
       inputTextCopy = inputTextCopy
         .normalize('NFD')

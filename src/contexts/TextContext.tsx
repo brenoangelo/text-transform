@@ -3,14 +3,13 @@ import React, { useEffect, useState, createContext, useContext } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const MENU_OPTIONS = [
-  { label: 'ativar tudo', value: 'all' },
   { label: 'colocar hífens', value: 'hifen' },
   { label: 'remover acentuação', value: 'accent' },
   { label: 'capitalizar', value: 'capitalized' },
   { label: 'adicionar aspas duplas', value: 'double-quotes' },
   {
-    label: 'adicionar aspas duplas em cada texto',
-    value: 'double-quotes-texts',
+    label: 'adicionar virgulas entre',
+    value: 'comma',
   },
 ];
 
