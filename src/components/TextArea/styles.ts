@@ -77,3 +77,10 @@ export const CopyButton = styled.button`
     opacity: 0.5;
   }
 `;
+
+export const TextCount = styled.p`
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  color: #808080;
+`

@@ -2,7 +2,13 @@ import { Check, CopySimple } from 'phosphor-react';
 import { TextareaHTMLAttributes, useEffect, useState } from 'react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { Switch } from '../Switch';
-import { Container, CopyButton, Option, OptionsContainer } from './styles';
+import {
+  Container,
+  CopyButton,
+  Option,
+  OptionsContainer,
+  TextCount,
+} from './styles';
 
 interface IMenuOptions {
   label: string;
@@ -123,6 +129,8 @@ export function TextArea({
             <CopySimple size={22} color="#808080" />
           </CopyButton>
         ))}
+
+      <TextCount>{!!props?.value && (props.value as string)?.length}</TextCount>
       <textarea {...props} />
     </Container>
   ) : (
