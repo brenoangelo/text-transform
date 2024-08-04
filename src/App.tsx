@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'styled-components';
+import { Analytics } from '@vercel/analytics/react';
 import { Header } from './components/Header';
 import { TextTransform } from './components/TextTransform';
 import { GlobalStyle } from './styles/global';
@@ -13,6 +14,7 @@ export function App() {
 
       <AdsenseComponent />
       <GlobalStyle />
+      <Analytics />
     </ThemeProvider>
   );
 }
